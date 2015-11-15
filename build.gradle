@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath 'com.github.mindstorms-cop:lejos-ev3-gradle-plugin:0.1.2'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '1.2.2'
+}
+apply plugin: 'org.mindstormscop.lejosev3'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+version = '0.0.1'
+mainClassName = 'HelloWorld'
+
+shadowJar {
+    baseName = 'hello'
+    classifier = ''
+}
+
+ev3 {
+    discoverBrick = true
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main.compileClasspath += configurations.provided
+}
+
+idea.module {
+    scopes.PROVIDED.plus += [configurations.provided]
+}
+
+dependencies {
+    provided 'com.github.mindstorms-cop.lejos-ev3-maven-packages:ev3classes:0.9.0-beta.+'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+}
