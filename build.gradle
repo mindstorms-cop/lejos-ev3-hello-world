@@ -48,7 +48,7 @@ idea.module {
 }
 
 dependencies {
-    provided 'com.github.mindstorms-cop.lejos-ev3-maven-packages:ev3classes:0.9.0-beta.+'
+    provided 'com.github.mindstorms-cop.lejos-ev3-maven-packages:ev3classes:0.9.1-beta.+'
 }
 
 task wrapper(type: Wrapper) {
